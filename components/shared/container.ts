@@ -1,0 +1,1 @@
+export const container = "mx-auto w-full max-w-[920px] px-4"
