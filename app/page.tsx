@@ -50,6 +50,7 @@ export default function Home() {
       <SiteBackground />
       <SiteNavbar />
 
+  
       <Hero />
       <About />
 

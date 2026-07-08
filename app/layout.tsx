@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import { ViewTransition } from "react"
 import "./globals.css"
 
 import { ThemeProvider } from "@/components/theme-provider"
@@ -140,7 +140,7 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          {children}
+          <ViewTransition name="page">{children}</ViewTransition>
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>
