@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "About — Jansen Cadorna",
     description:
       "Background, interests, education, and development journey of Jansen Cadorna.",
-    images: ["/og-image.png"],
+    images: ["/og-image-abt.png"],
   },
 }
 const education = [
@@ -131,20 +131,28 @@ export default function AboutPage() {
         <div className="border-b border-white/10 pb-14">
           <p className="text-label text-white/50">More about me</p>
 
-          <div className="mt-8 flex flex-col gap-6 ">
+          <div className="mt-8 flex flex-col gap-6">
             <div>
               <h1 className="text-[42px] leading-none font-semibold tracking-[-0.06em] text-white md:text-[56px]">
                 Jansen Cadorna Viray
               </h1>
 
               <p className="mt-3 text-base text-white/45">
-                Computer Science Student · Multimedia Artist · Aspiring Software Engineer
+                Computer Science Student · Multimedia Artist · Aspiring Software
+                Engineer
               </p>
             </div>
 
-            <div className="space-y-5 text-[18px] leading-relaxed  text-white/60">
+            <div className="space-y-5 text-[18px] leading-relaxed text-white/60">
               <p>
-                I started coding when I was 13 <span className="text-xs">( March 2021)</span>, just searching around how to automate things, then I discovered computer science and programming. So I started learning web development and design. I got hooked on building things that feel polished, useful, and ready to ship. I&apos;m still learning every day, but I build with the mindset of making things that feel real, useful, and polished.
+                I started coding when I was 13{" "}
+                <span className="text-xs">( March 2021)</span>, just searching
+                around how to automate things, then I discovered computer
+                science and programming. So I started learning web development
+                and design. I got hooked on building things that feel polished,
+                useful, and ready to ship. I&apos;m still learning every day,
+                but I build with the mindset of making things that feel real,
+                useful, and polished.
               </p>
             </div>
           </div>
@@ -157,10 +165,20 @@ export default function AboutPage() {
           title="What I’m currently focused on"
         >
           <ul className="space-y-3 text-base leading-relaxed text-white/55">
-            <li>· Improving my portfolio into a more professional product-focused site</li>
-            <li>· Learning stronger software architecture and backend workflows</li>
-            <li>· Building projects that mix design taste with useful functionality</li>
-            <li>· Exploring AI tools, automation, and better development workflows</li>
+            <li>
+              · Improving my portfolio into a more professional product-focused
+              site
+            </li>
+            <li>
+              · Learning stronger software architecture and backend workflows
+            </li>
+            <li>
+              · Building projects that mix design taste with useful
+              functionality
+            </li>
+            <li>
+              · Exploring AI tools, automation, and better development workflows
+            </li>
           </ul>
         </ProfileBlock>
 
@@ -304,7 +322,7 @@ function TimelineItem({
           {title}
         </h3>
 
-        <p className="mt-1 text-sm italic text-white/40">{place}</p>
+        <p className="mt-1 text-sm text-white/40 italic">{place}</p>
 
         <p className="mt-3 max-w-[560px] text-sm leading-relaxed text-white/50">
           {description}
