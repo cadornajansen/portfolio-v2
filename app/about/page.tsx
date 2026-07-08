@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image-abt.png",
         width: 1200,
         height: 630,
         alt: "About Jansen Cadorna portfolio preview",
