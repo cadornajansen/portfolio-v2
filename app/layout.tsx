@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css"
 
@@ -48,7 +50,6 @@ export const metadata: Metadata = {
 
   creator: "Jansen Cadorna",
   publisher: "Jansen Cadorna",
-
   category: "technology",
 
   alternates: {
@@ -116,10 +117,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-
-  verification: {
-    google: "replace-with-google-search-console-code",
-  },
 }
 
 export const viewport: Viewport = {
@@ -142,7 +139,11 @@ export default function RootLayout({
       className={cn("antialiased", sfPro.variable, sfProRounded.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   )
