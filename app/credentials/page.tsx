@@ -5,6 +5,43 @@ import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
 import { container } from "@/components/shared/container"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Certifications",
+  description:
+    "Certifications and credentials earned by Jansen Cadorna across software development, Python, management information systems, UI/UX design, and web technologies.",
+
+  alternates: {
+    canonical: "/certifications",
+  },
+
+  openGraph: {
+    title: "Certifications — Jansen Cadorna",
+    description:
+      "View Jansen Cadorna’s certifications and credentials across software development, Python, UI/UX design, information systems, and web technologies.",
+    url: "/certifications",
+    siteName: "Jansen Cadorna",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jansen Cadorna certifications page preview",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Certifications — Jansen Cadorna",
+    description:
+      "Software development, Python, UI/UX design, and information systems certifications by Jansen Cadorna.",
+    images: ["/og-image.png"],
+  },
+}
+
 const certifications = [
   {
     title: "Management Information Systems",

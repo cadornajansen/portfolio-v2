@@ -2,6 +2,43 @@ import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
 import { container } from "@/components/shared/container"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Tech Stack",
+  description:
+    "The tools, frameworks, languages, and platforms Jansen Cadorna uses for frontend development, backend systems, design, deployment, and product building.",
+
+  alternates: {
+    canonical: "/stack",
+  },
+
+  openGraph: {
+    title: "Tech Stack — Jansen Cadorna",
+    description:
+      "A look at Jansen Cadorna’s development stack, including Next.js, React, TypeScript, Tailwind CSS, Supabase, design tools, and deployment workflow.",
+    url: "/stack",
+    siteName: "Jansen Cadorna",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jansen Cadorna tech stack page preview",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Tech Stack — Jansen Cadorna",
+    description:
+      "Tools, frameworks, and platforms used by Jansen Cadorna to build polished web products.",
+    images: ["/og-image.png"],
+  },
+}
+
 const skillGroups = [
   {
     title: "Frontend & Web",

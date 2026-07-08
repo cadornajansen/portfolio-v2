@@ -12,7 +12,42 @@ import {
 import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
 import { container } from "@/components/shared/container"
+import type { Metadata } from "next"
 
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about Jansen Cadorna, a product-minded software developer focused on design, code, web systems, interface quality, and practical digital products.",
+
+  alternates: {
+    canonical: "/about",
+  },
+
+  openGraph: {
+    title: "About — Jansen Cadorna",
+    description:
+      "More about Jansen Cadorna: background, education, interests, development journey, design taste, and approach to building digital products.",
+    url: "/about",
+    siteName: "Jansen Cadorna",
+    type: "profile",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About Jansen Cadorna portfolio preview",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Jansen Cadorna",
+    description:
+      "Background, interests, education, and development journey of Jansen Cadorna.",
+    images: ["/og-image.png"],
+  },
+}
 const education = [
   {
     title: "Computer Science",

@@ -11,6 +11,43 @@ import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
 import { container } from "@/components/shared/container"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Selected projects by Jansen Cadorna, including finance dashboards, project tracking systems, organization portals, AI tools, and polished web products.",
+
+  alternates: {
+    canonical: "/projects",
+  },
+
+  openGraph: {
+    title: "Projects — Jansen Cadorna",
+    description:
+      "Explore selected projects by Jansen Cadorna: web systems, dashboards, student tools, portfolio work, and practical product-focused builds.",
+    url: "/projects",
+    siteName: "Jansen Cadorna",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jansen Cadorna projects page preview",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects — Jansen Cadorna",
+    description:
+      "Selected projects, dashboards, systems, and web products built by Jansen Cadorna.",
+    images: ["/og-image.png"],
+  },
+}
+
 const projects = [
   {
     title: "Ledgerly",

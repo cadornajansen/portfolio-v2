@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const siteUrl = "https://jansencadorna.com"
+const siteUrl = "https://www.jansencadorna.com"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${siteUrl}/projects`,
@@ -26,13 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/stack`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.75,
     },
     {
       url: `${siteUrl}/certifications`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.75,
     },
   ]
 }
