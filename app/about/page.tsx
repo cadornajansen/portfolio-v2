@@ -2,7 +2,6 @@ import Link from "next/link"
 import {
   ArrowUpRight,
   Award,
-  BookOpen,
   BriefcaseBusiness,
   GraduationCap,
   Headphones,

@@ -9,19 +9,25 @@ const offers = [
   {
     icon: <Code2 className="size-4" />,
     title: "Websites & landing pages",
-    description: "Clean, fast, and polished interfaces for brands, portfolios, and organizations.",
+    description:
+      "Clean, fast, and polished interfaces for brands, portfolios, and organizations.",
   },
   {
     icon: <Workflow className="size-4" />,
     title: "Web systems",
-    description: "Practical dashboards, portals, and internal tools built around real workflows.",
+    description:
+      "Practical dashboards, portals, and internal tools built around real workflows.",
   },
   {
     icon: <Sparkles className="size-4" />,
     title: "Design-to-code builds",
-    description: "Turning Figma layouts and messy ideas into responsive, working products.",
+    description:
+      "Turning Figma layouts and messy ideas into responsive, working products.",
   },
 ]
+
+const emailHref =
+  "mailto:hello@jansencadorna.com?subject=Project Inquiry&body=Hi Jansen,%0D%0A%0D%0AI'd like to consult with you about a project.%0D%0A%0D%0AProject idea:%0D%0ABudget/timeline:%0D%0AAdditional notes:%0D%0A"
 
 export function ContactCTA() {
   return (
@@ -40,7 +46,7 @@ export function ContactCTA() {
         {/* Card background effects */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.09),transparent_34%,rgba(255,255,255,0.025))]" />
         <div className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-        <div className="pointer-events-none absolute right-[-180px] top-[-180px] h-[360px] w-[360px] rounded-full bg-blue-500/[0.09] blur-[120px]" />
+        <div className="pointer-events-none absolute top-[-180px] right-[-180px] h-[360px] w-[360px] rounded-full bg-blue-500/[0.09] blur-[120px]" />
         <div className="pointer-events-none absolute bottom-[-200px] left-[-160px] h-[380px] w-[420px] rounded-full bg-white/[0.045] blur-[130px]" />
 
         <div className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
@@ -52,22 +58,32 @@ export function ContactCTA() {
             </h2>
 
             <p className="mt-6 max-w-[560px] text-hero-body text-white/55 md:text-hero-body-lg">
-              I help students, small businesses, and organizations build polished websites, web systems, and digital products through hands-on collaboration.
+              I help students, small businesses, and organizations build
+              polished websites, web systems, and digital products through
+              hands-on collaboration.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button className="h-11 rounded-lg bg-white px-6 text-sm text-black hover:bg-white/90">
-                <Mail className="mr-2 size-4" />
-                Consult with me
-              </Button>
+              <a href={emailHref}>
+                <Button className="h-11 rounded-lg bg-white px-6 text-sm text-black hover:bg-white/90">
+                  <Mail className="mr-2 size-4" />
+                  Consult with me
+                </Button>
+              </a>
 
-              <Button
-                variant="outline"
-                className="group h-11 rounded-lg border-white/10 bg-transparent px-6 text-sm text-white hover:bg-white hover:text-black"
+              <a
+                href="/projects"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View projects
-                <ArrowUpRight className="ml-2 size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Button>
+                <Button
+                  variant="outline"
+                  className="group h-11 rounded-lg border-white/10 bg-transparent px-6 text-sm text-white hover:bg-white hover:text-black"
+                >
+                  View projects
+                  <ArrowUpRight className="ml-2 size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Button>
+              </a>
             </div>
           </div>
 
@@ -108,10 +124,13 @@ export function ContactCTA() {
         <div className="relative z-10 mt-10 h-px w-full bg-white/10" />
 
         <div className="relative z-10 mt-6 flex flex-col gap-3 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>Tell me about your project, most ideas start with a simple conversation.</p>
+          <p>
+            Tell me about your project, most ideas start with a simple
+            conversation.
+          </p>
 
           <a
-            href="mailto:your-email@example.com"
+            href={emailHref}
             className="inline-flex items-center gap-2 font-medium text-white transition hover:text-white/70"
           >
             hello@jansencadorna.com

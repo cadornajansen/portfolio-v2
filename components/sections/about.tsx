@@ -43,7 +43,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className={`${container} relative z-10 pb-20`}>
+    <section id="about" className={`${container} relative z-10 pt-10 md:pt-0 pb-5 md:pb-20`}>
       <motion.div
         initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -56,6 +56,7 @@ export function About() {
         <p className="mt-5 flex items-center gap-2 text-hero-body text-white/55 md:text-hero-body-lg">
           Currently a Computer Science student from Manila, Philippines
           <Image
+          className="md:block hidden"
             width="24"
             height="24"
             src="https://img.icons8.com/emoji/48/philippines-emoji.png"
@@ -103,7 +104,7 @@ export function About() {
 
           <Link
             href="/about"
-            className="group inline-flex items-center gap-2 text-label text-white transition hover:text-white/70"
+            className="group md:inline-flex items-center gap-2 text-label text-white transition hover:text-white/70 hidden "
           >
             Discover more about me
             <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -150,10 +151,10 @@ function AboutCard({
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="px-8 first:pl-0 last:pr-0">
-      <p className="text-[26px] leading-none font-medium tracking-[-0.05em] text-white">
+      <p className=" md:text-[26px] leading-none font-medium tracking-tighter text-white">
         {value}
       </p>
-      <p className="mt-2 text-sm font-semibold tracking-[0.08em] text-white/50 uppercase">
+      <p className="mt-2 text-xs md:text-sm font-semibold tracking-[0.08em] text-white/50 uppercase">
         {label}
       </p>
     </div>

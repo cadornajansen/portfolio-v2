@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import { ArrowUpRight, Pin } from "lucide-react"
 
 import { SiteBackground } from "@/components/layout/site-background"
@@ -139,12 +138,10 @@ export default function CertificationsPage() {
 
       <section className={`${container} relative z-10 pt-32 pb-28`}>
         <div className="border-b border-white/10 pb-14">
-          <p className="text-label text-white/45">Credentials</p>
-
           <div className="mt-8 grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <h1 className="text-[42px] leading-none font-semibold tracking-[-0.06em] text-white md:text-[56px]">
-                Certifications
+                Credentials
               </h1>
 
               <p className="mt-3 text-base text-white/45">

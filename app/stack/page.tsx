@@ -133,7 +133,6 @@ export default function StackPage() {
       <section className={`${container} relative z-10 pt-32 pb-28`}>
         {/* Header */}
         <div className="border-white/10 pb-2">
-          <p className="text-label text-white/45">Skillset</p>
 
           <div className="mt-8 grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>

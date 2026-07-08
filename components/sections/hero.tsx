@@ -11,20 +11,20 @@ import { container } from "@/components/shared/container"
 export function Hero() {
   return (
     <section
-      className={`${container} relative z-10 flex min-h-dvh items-center pt-20`}
+      className={`${container} relative z-10 flex min-h-dvh items-center pt-5 md:pt-20`}
     >
       <div className="grid w-full items-center gap-8 md:grid-cols-[330px_1fr] lg:gap-12">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-[330px] w-full overflow-hidden rounded-sm bg-white/5"
+          className="relative h-82.5 w-full overflow-hidden rounded-sm bg-white/5"
         >
           <Image
             src="/img/profile.png"
             alt="Jansen Cadorna"
             fill
-            priority
+            preload
             sizes="330px"
             className="object-cover"
           />

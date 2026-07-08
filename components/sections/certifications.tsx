@@ -1,17 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import {
-  ArrowUpRight,
-  Braces,
-  Code2,
-  Database,
-  GitBranch,
-  Layers3,
-  Server,
-  Sparkles,
-} from "lucide-react"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { motion } from "motion/react"
+
 import { Separator } from "@/components/ui/separator"
 
 const skills = [
@@ -34,19 +27,19 @@ const certifications = [
     title: "Mgmt. Information Systems",
     issuer: "MSBM UK",
     logo: "/img/cert-msbm.png",
-    href: "#",
+    href: "https://pdfhost.io/v/YB74j4SCFf_MSBM_UK_-_CERT_-_JANSEN_CADORNA",
   },
   {
     title: "Python Certification",
     issuer: "EntryLevel",
     logo: "/img/cert-entrylevel-python.png",
-    href: "#",
+    href: "https://entrylevel-public.s3.amazonaws.com/certificate/1d76a5f8-dc71-403a-8df3-e174bf7b3e87/79788b28-20bc-48e7-982a-cc7af3d7dd51_cert.pdf",
   },
   {
     title: "Web & Mobile UI/UX Design",
     issuer: "Zero To Mastery",
     logo: "/img/cert-ztm-web-design.png",
-    href: "#",
+    href: "https://ude.my/UC-74d4cfc3-ec53-4b6d-a56d-3a057ff95e4f",
   },
 ]
 
@@ -61,18 +54,20 @@ export function Certifications() {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="relative z-10 py-20"
+      className="relative z-10 py-15 md:py-20"
     >
       <div className="mb-8 flex items-center justify-between">
         <p className="text-label text-white">Certifications</p>
 
-        <a
-          href="#"
+        <Link
+          href="/certifications"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
         >
           View all
-          <ArrowUpRight className="size-4 opacity-50 transition hover:opacity-100" />
-        </a>
+          <ArrowUpRight className="size-4 opacity-50 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+        </Link>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
@@ -92,19 +87,22 @@ export function Certifications() {
           </motion.div>
         ))}
       </div>
+
       {/* Stack */}
       <div className="my-10">
         <div className="mb-8 flex items-center justify-between">
-        <p className="text-label text-white">Stacks</p>
+          <p className="text-label text-white">Stacks</p>
 
-        <a
-          href="#"
-          className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
-        >
-          View all
-          <ArrowUpRight className="size-4 opacity-50 transition hover:opacity-100" />
-        </a>
-      </div>
+          <Link
+            href="/stack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
+          >
+            View all
+            <ArrowUpRight className="size-4 opacity-50 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+          </Link>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
@@ -187,6 +185,8 @@ function CertificateCard({
 
         <a
           href={href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-xs font-semibold tracking-[-0.02em] text-white transition hover:text-white/70"
         >
           View Certificate
