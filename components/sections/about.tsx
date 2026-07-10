@@ -1,27 +1,26 @@
-"use client"
-
 import type { ReactNode } from "react"
 import Image from "next/image"
 import { ArrowUpRight, Code2, MonitorCog, PenTool } from "lucide-react"
-import { motion } from "motion/react"
-import { Separator } from "../ui/separator"
 import Link from "next/link"
 import { container } from "@/components/shared/container"
 
 const aboutCards = [
   {
     title: "From designs",
-    image: "/img/about-designs.png",
+    image:
+      "https://res.cloudinary.com/koo10zab/image/upload/v1783620974/about-designs_tpdu2k.png",
     icon: <PenTool className="size-5" />,
   },
   {
     title: "Writing codes",
-    image: "/img/about-code.png",
+    image:
+      "https://res.cloudinary.com/koo10zab/image/upload/v1783620974/about-code_u0h3sh.png",
     icon: <Code2 className="size-5" />,
   },
   {
     title: "To launch",
-    image: "/img/about-launch.png",
+    image:
+      "https://res.cloudinary.com/koo10zab/image/upload/v1783620971/about-launch_gcbipw.png",
     icon: <MonitorCog className="size-5" />,
   },
 ]
@@ -43,46 +42,33 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className={`${container} relative z-10 pt-10 md:pt-0 pb-5 md:pb-20`}>
-      <motion.div
-        initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        viewport={{ once: true, margin: "-120px" }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-[860px]"
-      >
+    <section
+      id="about"
+      className={`${container} relative z-10 pt-10 pb-5 md:pt-0 md:pb-20`}
+    >
+      <div className="max-w-[860px]">
         <p className="text-label text-white">Get to know me</p>
 
         <p className="mt-5 flex items-center gap-2 text-hero-body text-white/55 md:text-hero-body-lg">
           Currently a Computer Science student from Manila, Philippines
           <Image
-          className="md:block hidden"
-            width="24"
-            height="24"
+            className="hidden md:block"
+            width={24}
+            height={24}
             src="https://img.icons8.com/emoji/48/philippines-emoji.png"
-            alt="philippines-emoji"
+            alt="Philippines flag emoji"
+            sizes="24px"
           />
         </p>
 
         <div className="mt-9 grid gap-4 md:grid-cols-3">
-          {aboutCards.map((card, index) => (
-            <motion.div
+          {aboutCards.map((card) => (
+            <AboutCard
               key={card.title}
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, margin: "-120px" }}
-              transition={{
-                duration: 0.55,
-                delay: index * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <AboutCard
-                icon={card.icon}
-                title={card.title}
-                image={card.image}
-              />
-            </motion.div>
+              icon={card.icon}
+              title={card.title}
+              image={card.image}
+            />
           ))}
         </div>
 
@@ -93,7 +79,7 @@ export function About() {
           problems that actually help people.
         </p>
 
-        <Separator className="my-6" />
+        <div className="my-6 h-px w-full bg-border" />
 
         <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-center">
           <div className="grid flex-1 grid-cols-3 divide-x divide-white/15">
@@ -110,7 +96,7 @@ export function About() {
             <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

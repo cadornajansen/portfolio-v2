@@ -23,7 +23,7 @@ const navItems = [
 
 export function SiteNavbar() {
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#080808]/75 backdrop-blur-xl">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#080808]/90 supports-backdrop-filter:backdrop-blur-sm">
       <div className={`${container} flex items-center justify-between py-4`}>
         <Link
           href="/"

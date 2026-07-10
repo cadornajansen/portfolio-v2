@@ -7,7 +7,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { JsonLd } from "@/components/seo/json-ld"
 import { cn } from "@/lib/utils"
-import { sfPro, sfProRounded } from "@/lib/fonts"
+import { sfPro } from "@/lib/fonts"
 import { absoluteUrl, seoConfig, sitePages } from "@/lib/seo"
 
 export const metadata: Metadata = {
@@ -159,10 +159,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
+      <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", sfPro.variable, sfProRounded.variable)}
+      className={cn("antialiased", sfPro.variable)}
     >
       <body>
         <ThemeProvider>

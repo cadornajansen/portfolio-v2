@@ -97,7 +97,7 @@ export default function ContactPage() {
         <section className="grid gap-6 py-14 md:grid-cols-2">
           <a
             href={emailHref}
-            className="group rounded-2xl border border-white/12 bg-[#0b0b0d]/80 p-7 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90"
+            className="group rounded-2xl border border-white/12 bg-[#0b0b0d]/88 p-7 shadow-xl shadow-black/35 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90"
           >
             <div className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70 transition group-hover:text-white">
               <Mail className="size-5" />
@@ -121,7 +121,7 @@ export default function ContactPage() {
             href={seoConfig.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group rounded-2xl border border-white/12 bg-[#0b0b0d]/80 p-7 shadow-2xl shadow-black/40 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90"
+            className="group rounded-2xl border border-white/12 bg-[#0b0b0d]/88 p-7 shadow-xl shadow-black/35 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90"
           >
             <div className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70 transition group-hover:text-white">
               <GithubIcon />

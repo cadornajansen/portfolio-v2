@@ -236,7 +236,7 @@ function ProjectCard({
   pinned: boolean
 }) {
   return (
-    <article className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-2xl border border-white/12 bg-[#0b0b0d]/80 p-7 shadow-2xl shadow-black/40 backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90">
+    <article className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-2xl border border-white/12 bg-[#0b0b0d]/88 p-7 shadow-xl shadow-black/35 transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_36%,rgba(255,255,255,0.03))]" />
 
       <div className="pointer-events-none absolute inset-x-10 bottom-0 h-px bg-linear-to-r from-transparent via-blue-300/40 to-transparent" />

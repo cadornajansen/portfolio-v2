@@ -9,7 +9,6 @@ import { Hero } from "@/components/sections/hero"
 import { Projects } from "@/components/sections/projects"
 import { JsonLd } from "@/components/seo/json-ld"
 import { container } from "@/components/shared/container"
-import { Separator } from "@/components/ui/separator"
 import {
   absoluteUrl,
   createPageMetadata,
@@ -78,7 +77,7 @@ export default function Home() {
       <div className={`${container} relative z-10`}>
         <Projects />
         <Certifications />
-        <Separator className="relative z-10 mb-10 max-w-280" />
+        <div className="relative z-10 mb-10 h-px max-w-280 bg-border" />
         <ContactCTA />
       </div>
     </main>

@@ -1,11 +1,6 @@
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { motion } from "motion/react"
-
-import { Separator } from "@/components/ui/separator"
 
 const skills = [
   "TypeScript",
@@ -45,15 +40,8 @@ const certifications = [
 
 export function Certifications() {
   return (
-    <motion.section
+    <section
       id="certifications"
-      initial={{ opacity: 0, y: 44, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      }}
       className="relative z-10 py-15 md:py-20"
     >
       <div className="mb-8 flex items-center justify-between">
@@ -69,20 +57,8 @@ export function Certifications() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {certifications.map((certificate, index) => (
-          <motion.div
-            key={certificate.title}
-            initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{
-              duration: 0.65,
-              delay: index * 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            <CertificateCard {...certificate} />
-          </motion.div>
+        {certifications.map((certificate) => (
+          <CertificateCard key={certificate.title} {...certificate} />
         ))}
       </div>
 
@@ -91,39 +67,22 @@ export function Certifications() {
         <div className="mb-8 flex items-center justify-between">
           <p className="text-label text-white">Stacks</p>
 
-        <Link
-          href="/stack"
-          className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
-        >
+          <Link
+            href="/stack"
+            className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
+          >
             View all
             <ArrowUpRight className="size-4 opacity-50 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
           </Link>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{
-            duration: 0.65,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="flex flex-wrap gap-3"
-        >
-          {skills.map((skill, index) => {
+        <div className="flex flex-wrap gap-3">
+          {skills.map((skill) => {
             const isMore = skill === "+ more"
 
             return (
-              <motion.span
+              <span
                 key={skill}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: index * 0.035,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
                 className={[
                   "rounded-lg border px-4 py-2 text-sm font-medium tracking-[-0.02em] transition",
                   isMore
@@ -132,12 +91,12 @@ export function Certifications() {
                 ].join(" ")}
               >
                 {skill}
-              </motion.span>
+              </span>
             )
           })}
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
@@ -153,7 +112,7 @@ function CertificateCard({
   href: string
 }) {
   return (
-    <article className="group relative overflow-hidden rounded-xl border border-white/12 bg-[#0b0b0d]/70 p-8 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/85">
+    <article className="group relative overflow-hidden rounded-xl border border-white/12 bg-[#0b0b0d]/88 p-8 shadow-xl shadow-black/30 transition duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-[#101014]/90">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),transparent_38%,rgba(255,255,255,0.025))]" />
 
       <div className="pointer-events-none absolute top-0 left-1/2 h-px w-2/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/25 to-transparent" />
@@ -177,7 +136,7 @@ function CertificateCard({
           <p className="mt-1 text-sm text-white/55">{issuer}</p>
         </div>
 
-        <Separator className="my-4" />
+        <div className="my-4 h-px w-full bg-border" />
 
         <a
           href={href}

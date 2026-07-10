@@ -5,11 +5,11 @@ export function SiteBackground() {
       <div className="absolute inset-0 bg-[#080808]" />
 
       {/* Gradient light spots */}
-      <div className="absolute top-[-160px] left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-white/[0.08] blur-[150px]" />
-      <div className="absolute top-[260px] left-[-220px] h-[520px] w-[620px] rounded-full bg-blue-500/[0.08] blur-[160px]" />
-      <div className="absolute top-[420px] right-[-240px] h-[560px] w-[680px] rounded-full bg-violet-500/[0.07] blur-[170px]" />
-      <div className="absolute bottom-[180px] left-[22%] h-[420px] w-[520px] rounded-full bg-cyan-400/[0.055] blur-[160px]" />
-      <div className="absolute right-[18%] bottom-[-260px] h-[560px] w-[680px] rounded-full bg-white/[0.05] blur-[170px]" />
+      <div className="absolute top-[-140px] left-1/2 h-[460px] w-[760px] -translate-x-1/2 rounded-full bg-white/[0.075] blur-[96px]" />
+      <div className="absolute top-[260px] left-[-200px] h-[460px] w-[560px] rounded-full bg-blue-500/[0.07] blur-[104px]" />
+      <div className="absolute top-[420px] right-[-220px] h-[500px] w-[620px] rounded-full bg-violet-500/[0.06] blur-[112px]" />
+      <div className="absolute bottom-[180px] left-[22%] h-[360px] w-[480px] rounded-full bg-cyan-400/[0.05] blur-[104px]" />
+      <div className="absolute right-[18%] bottom-[-240px] h-[500px] w-[620px] rounded-full bg-white/[0.045] blur-[112px]" />
 
       {/* Grid revealed only by gradient masks */}
       <div className="absolute inset-0 opacity-100">
@@ -18,9 +18,9 @@ export function SiteBackground() {
             absolute inset-0
             bg-[linear-gradient(to_right,rgba(255,255,255,0.16)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.16)_1px,transparent_1px)]
             bg-[size:84px_84px]
-            [mask-image:radial-gradient(circle_at_50%_18%,black_0%,transparent_34%),radial-gradient(circle_at_10%_40%,black_0%,transparent_28%),radial-gradient(circle_at_90%_48%,black_0%,transparent_30%),radial-gradient(circle_at_28%_78%,black_0%,transparent_26%),radial-gradient(circle_at_76%_92%,black_0%,transparent_28%)]
+            [mask-image:radial-gradient(circle_at_50%_18%,black_0%,transparent_34%),radial-gradient(circle_at_10%_40%,black_0%,transparent_28%),radial-gradient(circle_at_90%_48%,black_0%,transparent_30%)]
             [mask-composite:add]
-            [-webkit-mask-image:radial-gradient(circle_at_50%_18%,black_0%,transparent_34%),radial-gradient(circle_at_10%_40%,black_0%,transparent_28%),radial-gradient(circle_at_90%_48%,black_0%,transparent_30%),radial-gradient(circle_at_28%_78%,black_0%,transparent_26%),radial-gradient(circle_at_76%_92%,black_0%,transparent_28%)]
+            [-webkit-mask-image:radial-gradient(circle_at_50%_18%,black_0%,transparent_34%),radial-gradient(circle_at_10%_40%,black_0%,transparent_28%),radial-gradient(circle_at_90%_48%,black_0%,transparent_30%)]
             [-webkit-mask-composite:source-over]
           "
         />
@@ -29,6 +29,7 @@ export function SiteBackground() {
       {/* Bigger faint grid, also masked */}
       <div
         className="
+          hidden md:block
           absolute inset-0
           bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)]
           bg-[size:336px_336px]

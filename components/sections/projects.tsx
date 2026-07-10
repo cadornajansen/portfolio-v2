@@ -69,8 +69,8 @@ export function Projects() {
   return (
     <motion.section
       id="projects"
-      initial={{ opacity: 0, y: 44, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{
         duration: 0.8,
@@ -280,7 +280,7 @@ function ProjectCard({
         }
       }}
       className={[
-        "relative flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-[#0b0b0d]/80 text-left shadow-2xl shadow-black/40 backdrop-blur-xl transition-colors duration-500 outline-none",
+        "relative flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-[#0b0b0d]/88 text-left shadow-xl shadow-black/35 transition-colors duration-500 outline-none",
         "before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_36%,rgba(255,255,255,0.03))]",
         compact ? "min-h-[285px] p-5" : "min-h-[310px] p-7",
         asButton
