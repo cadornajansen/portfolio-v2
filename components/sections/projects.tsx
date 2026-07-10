@@ -24,7 +24,7 @@ const projects = [
       "A clean personal finance dashboard for budgeting, tracking cash flow, and spending insights.",
     actions: ["View Project", "Case Study"],
     projectUrl: "https://ledgerly-indol.vercel.app",
-    caseStudyUrl: "/projects/ledgerly",
+    caseStudyUrl: "#",
   },
   {
     id: "orbit",
@@ -36,7 +36,7 @@ const projects = [
       "A focused task and workflow platform for teams managing projects, deadlines, and progress.",
     actions: ["View Project", "Case Study"],
     projectUrl: "#",
-    caseStudyUrl: "/projects/orbit",
+    caseStudyUrl: "#",
   },
   {
     id: "campusflow",
@@ -48,7 +48,7 @@ const projects = [
       "A system for handling members, announcements, events, and internal organization workflows.",
     actions: ["View Project", "Case Study"],
     projectUrl: "#",
-    caseStudyUrl: "/projects/campusflow",
+    caseStudyUrl: "#",
   },
 ]
 

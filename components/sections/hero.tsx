@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Mail } from "lucide-react"
 import { motion } from "motion/react"
 
@@ -20,11 +21,11 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative h-82.5 w-full overflow-hidden rounded-sm bg-white/5"
         >
-          <Image
-            src="/img/profile.png"
-            alt="Jansen Cadorna"
-            fill
-            preload
+            <Image
+              src="https://res.cloudinary.com/koo10zab/image/upload/v1783620982/profile_cnpfgo.png"
+              alt="Portrait of Jansen Cadorna"
+              fill
+              preload
             sizes="330px"
             className="object-cover"
           />
@@ -71,12 +72,12 @@ export function Hero() {
               </Button>
             </a>
 
-            <a href="mailto:hello@jansencadorna.com">
+            <Link href="/contact">
               <Button className="h-10 rounded-lg bg-white px-5 text-sm text-black hover:bg-white/90">
                 <Mail className="mr-2 size-4" />
                 Get in touch
               </Button>
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

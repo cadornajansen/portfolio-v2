@@ -6,22 +6,18 @@ const navItems = [
   {
     label: "About",
     href: "/about",
-    newTab: true,
   },
   {
     label: "Projects",
     href: "/projects",
-    newTab: false,
   },
   {
     label: "Stack",
     href: "/stack",
-    newTab: true,
   },
   {
     label: "Credentials",
     href: "/credentials",
-    newTab: true,
   },
 ]
 

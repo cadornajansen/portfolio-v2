@@ -9,44 +9,25 @@ import {
 
 import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
+import { JsonLd } from "@/components/seo/json-ld"
 import { container } from "@/components/shared/container"
+import {
+  absoluteUrl,
+  createPageMetadata,
+  projectSummaries,
+  seoConfig,
+} from "@/lib/seo"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Projects",
   description:
     "Selected projects by Jansen Cadorna, including finance dashboards, project tracking systems, organization portals, AI tools, and polished web products.",
-
-  alternates: {
-    canonical: "/projects",
-  },
-
-  openGraph: {
-    title: "Projects — Jansen Cadorna",
-    description:
-      "Explore selected projects by Jansen Cadorna: web systems, dashboards, student tools, portfolio work, and practical product-focused builds.",
-    url: "/projects",
-    siteName: "Jansen Cadorna",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Jansen Cadorna projects page preview",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Projects — Jansen Cadorna",
-    description:
-      "Selected projects, dashboards, systems, and web products built by Jansen Cadorna.",
-    images: ["/og-image.png"],
-  },
-}
+  path: "/projects",
+  image: seoConfig.ogImages.projects,
+  imageAlt: "Jansen Cadorna projects page preview",
+})
 
 const projects = [
   {
@@ -59,7 +40,7 @@ const projects = [
     description:
       "A clean personal finance dashboard for tracking balances, expenses, cash flow, and simple financial insights.",
     stack: ["Next.js", "Supabase", "Tailwind CSS", "TypeScript"],
-    liveUrl: "#",
+    liveUrl: "https://ledgerly-indol.vercel.app",
     repoUrl: "#",
     caseStudyUrl: "#",
     pinned: true,
@@ -96,14 +77,69 @@ const projects = [
   },
 ]
 
+const projectsJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": absoluteUrl("/projects#webpage"),
+    url: absoluteUrl("/projects"),
+    name: "Projects - Jansen Cadorna",
+    description: metadata.description,
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    about: {
+      "@id": absoluteUrl("/#person"),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: absoluteUrl("/projects"),
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Jansen Cadorna projects",
+    itemListElement: projectSummaries.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "SoftwareApplication",
+        name: project.name,
+        applicationCategory: project.category,
+        description: project.description,
+        url: project.url ?? absoluteUrl("/projects"),
+        creator: {
+          "@id": absoluteUrl("/#person"),
+        },
+        programmingLanguage: project.technologies,
+      },
+    })),
+  },
+]
+
 export default function ProjectsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080808] text-white">
       <SiteBackground />
       <SiteNavbar />
+      <JsonLd data={projectsJsonLd} />
 
       <section className={`${container} relative z-10 pt-32 pb-28`}>
-        {/* Header */}
         <div className="border-b border-white/10 pb-14">
           <div className="mt-8 grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
@@ -112,7 +148,7 @@ export default function ProjectsPage() {
               </h1>
 
               <p className="mt-3 text-base text-white/45">
-                Systems, tools, and web products I’m building.
+                Systems, tools, and web products I am building.
               </p>
             </div>
 
@@ -132,7 +168,6 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Projects Grid */}
         <section className="py-14">
           <div className="mb-8 flex items-end justify-between">
             <div>
@@ -149,7 +184,6 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
         <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -210,7 +244,7 @@ function ProjectCard({
       <div className="relative z-10 flex flex-wrap gap-2">
         {pinned && (
           <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-medium tracking-[0.12em] text-white/70 uppercase">
-            ✦ Pinned
+            Pinned
           </span>
         )}
 
@@ -283,19 +317,32 @@ function ProjectAction({
   children: React.ReactNode
   variant?: "default" | "outline" | "ghost"
 }) {
+  const className = [
+    "inline-flex h-10 items-center justify-center rounded-lg px-4 text-xs font-medium transition",
+    variant === "default"
+      ? "bg-white text-black hover:bg-white/90"
+      : variant === "outline"
+        ? "border border-white/10 bg-transparent text-white hover:bg-white hover:text-black"
+        : "border border-white/10 bg-transparent text-white/55 hover:text-white",
+  ].join(" ")
+
+  if (href === "#") {
+    return (
+      <span aria-disabled="true" className={`${className} cursor-not-allowed opacity-60`}>
+        {children}
+        {variant !== "outline" && <ArrowUpRight className="ml-2 size-4" />}
+      </span>
+    )
+  }
+
+  const isExternal = href.startsWith("http")
+
   return (
     <Link
       href={href}
-      target={href === "#" ? undefined : "_blank"}
-      rel={href === "#" ? undefined : "noopener noreferrer"}
-      className={[
-        "inline-flex h-10 items-center justify-center rounded-lg px-4 text-xs font-medium transition",
-        variant === "default"
-          ? "bg-white text-black hover:bg-white/90"
-          : variant === "outline"
-            ? "border border-white/10 bg-transparent text-white hover:bg-white hover:text-black"
-            : "border border-white/10 bg-transparent text-white/55 hover:text-white",
-      ].join(" ")}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      className={className}
     >
       {children}
       {variant !== "outline" && <ArrowUpRight className="ml-2 size-4" />}

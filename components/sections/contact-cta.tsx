@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowUpRight, Code2, Mail, Sparkles, Workflow } from "lucide-react"
+import Link from "next/link"
 import { motion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
@@ -71,11 +72,7 @@ export function ContactCTA() {
                 </Button>
               </a>
 
-              <a
-                href="/projects"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="/projects">
                 <Button
                   variant="outline"
                   className="group h-11 rounded-lg border-white/10 bg-transparent px-6 text-sm text-white hover:bg-white hover:text-black"
@@ -83,7 +80,7 @@ export function ContactCTA() {
                   View projects
                   <ArrowUpRight className="ml-2 size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
 

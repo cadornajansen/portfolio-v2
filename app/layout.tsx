@@ -5,68 +5,48 @@ import { ViewTransition } from "react"
 import "./globals.css"
 
 import { ThemeProvider } from "@/components/theme-provider"
+import { JsonLd } from "@/components/seo/json-ld"
 import { cn } from "@/lib/utils"
 import { sfPro, sfProRounded } from "@/lib/fonts"
-
-const siteUrl = "https://jansencadorna.com"
+import { absoluteUrl, seoConfig, sitePages } from "@/lib/seo"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(seoConfig.siteUrl),
 
   title: {
-    default: "Jansen Cadorna — Product-minded Software Developer",
-    template: "%s — Jansen Cadorna",
+    default: seoConfig.defaultTitle,
+    template: `%s - ${seoConfig.siteName}`,
   },
 
-  description:
-    "Portfolio of Jansen Cadorna, a product-minded software developer from Manila, Philippines building polished websites, clean interfaces, dashboards, and practical web systems.",
-
+  description: seoConfig.defaultDescription,
   applicationName: "Jansen Cadorna Portfolio",
-
-  keywords: [
-    "Jansen Cadorna",
-    "Jansen Viray",
-    "Software Developer",
-    "Product-minded Software Developer",
-    "Frontend Developer",
-    "Web Developer Philippines",
-    "Next.js Developer",
-    "React Developer",
-    "TypeScript Developer",
-    "UI UX Designer",
-    "Portfolio",
-    "Manila Philippines Developer",
-    "Student Developer",
-    "Web Systems",
-    "Dashboard Developer",
-  ],
+  keywords: [...seoConfig.keywords],
 
   authors: [
     {
-      name: "Jansen Cadorna",
-      url: siteUrl,
+      name: seoConfig.creatorName,
+      url: seoConfig.siteUrl,
     },
   ],
 
-  creator: "Jansen Cadorna",
-  publisher: "Jansen Cadorna",
+  creator: seoConfig.creatorName,
+  publisher: seoConfig.creatorName,
   category: "technology",
 
   alternates: {
-    canonical: siteUrl,
+    canonical: "/",
   },
 
   openGraph: {
     type: "website",
-    locale: "en_PH",
-    url: siteUrl,
-    siteName: "Jansen Cadorna",
-    title: "Jansen Cadorna — Product-minded Software Developer",
-    description:
-      "A dark, premium portfolio showcasing projects, credentials, stack, and practical web systems by Jansen Cadorna.",
+    locale: seoConfig.locale,
+    url: seoConfig.siteUrl,
+    siteName: seoConfig.siteName,
+    title: seoConfig.defaultTitle,
+    description: seoConfig.defaultDescription,
     images: [
       {
-        url: "/og-image.png",
+        url: seoConfig.ogImages.home,
         width: 1200,
         height: 630,
         alt: "Jansen Cadorna portfolio preview",
@@ -76,10 +56,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Jansen Cadorna — Product-minded Software Developer",
-    description:
-      "Portfolio of Jansen Cadorna, building polished websites, interfaces, dashboards, and useful web systems.",
-    images: ["/og-image.png"],
+    title: seoConfig.defaultTitle,
+    description: seoConfig.defaultDescription,
+    images: [seoConfig.ogImages.home],
     creator: "@cadornajansen",
   },
 
@@ -119,6 +98,53 @@ export const metadata: Metadata = {
   },
 }
 
+const siteJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": absoluteUrl("/#person"),
+    name: seoConfig.creatorName,
+    url: seoConfig.siteUrl,
+    email: seoConfig.email,
+    image:
+      "https://res.cloudinary.com/koo10zab/image/upload/f_auto,q_auto,w_800/v1783620982/profile_cnpfgo.png",
+    jobTitle: "Software Developer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Manila",
+      addressCountry: "PH",
+    },
+    sameAs: [seoConfig.githubUrl],
+    knowsAbout: [
+      "Web development",
+      "Frontend development",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "UI/UX design",
+      "Product dashboards",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
+    name: seoConfig.siteName,
+    url: seoConfig.siteUrl,
+    description: seoConfig.defaultDescription,
+    publisher: {
+      "@id": absoluteUrl("/#person"),
+    },
+    inLanguage: "en-PH",
+    hasPart: sitePages.map((page) => ({
+      "@type": "WebPage",
+      name: page.name,
+      url: absoluteUrl(page.path),
+      description: page.description,
+    })),
+  },
+]
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -140,6 +166,7 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
+          <JsonLd data={siteJsonLd} />
           <ViewTransition name="page">{children}</ViewTransition>
           <Analytics />
           <SpeedInsights />

@@ -1,38 +1,21 @@
 import type { MetadataRoute } from "next"
 
-const siteUrl = "https://www.jansencadorna.com"
+import { absoluteUrl, sitePages } from "@/lib/seo"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${siteUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/stack`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${siteUrl}/certifications`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-  ]
+  const now = new Date()
+
+  return sitePages.map((page) => ({
+    url: absoluteUrl(page.path),
+    lastModified: now,
+    changeFrequency: page.path === "/" ? "weekly" : "monthly",
+    priority:
+      page.path === "/"
+        ? 1
+        : page.path === "/projects"
+          ? 0.9
+          : page.path === "/about" || page.path === "/credentials"
+            ? 0.85
+            : 0.75,
+  }))
 }

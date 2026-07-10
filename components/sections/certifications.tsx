@@ -60,9 +60,7 @@ export function Certifications() {
         <p className="text-label text-white">Certifications</p>
 
         <Link
-          href="/certifications"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/credentials"
           className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
         >
           View all
@@ -93,12 +91,10 @@ export function Certifications() {
         <div className="mb-8 flex items-center justify-between">
           <p className="text-label text-white">Stacks</p>
 
-          <Link
-            href="/stack"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
-          >
+        <Link
+          href="/stack"
+          className="group inline-flex items-center gap-2 text-label text-white/35 transition hover:text-white"
+        >
             View all
             <ArrowUpRight className="size-4 opacity-50 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
           </Link>

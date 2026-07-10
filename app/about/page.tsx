@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowUpRight,
@@ -11,55 +12,32 @@ import {
 
 import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
+import { JsonLd } from "@/components/seo/json-ld"
 import { container } from "@/components/shared/container"
-import type { Metadata } from "next"
+import { absoluteUrl, createPageMetadata, seoConfig } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About",
   description:
     "Learn more about Jansen Cadorna, a product-minded software developer focused on design, code, web systems, interface quality, and practical digital products.",
+  path: "/about",
+  image: seoConfig.ogImages.about,
+  imageAlt: "About Jansen Cadorna portfolio preview",
+  type: "profile",
+})
 
-  alternates: {
-    canonical: "/about",
-  },
-
-  openGraph: {
-    title: "About — Jansen Cadorna",
-    description:
-      "More about Jansen Cadorna: background, education, interests, development journey, design taste, and approach to building digital products.",
-    url: "/about",
-    siteName: "Jansen Cadorna",
-    type: "profile",
-    images: [
-      {
-        url: "/og-image-abt.png",
-        width: 1200,
-        height: 630,
-        alt: "About Jansen Cadorna portfolio preview",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "About — Jansen Cadorna",
-    description:
-      "Background, interests, education, and development journey of Jansen Cadorna.",
-    images: ["/og-image-abt.png"],
-  },
-}
 const education = [
   {
     title: "Computer Science",
     place: "Pamantasan ng Lungsod ng Maynila",
-    date: "2026 — Present",
+    date: "2026 - Present",
     description:
       "Currently studying computer science with a growing focus on software development, systems thinking, and practical product building.",
   },
   {
     title: "Science, Technology, Engineering, and Mathematics (STEM)",
     place: "Manuel G. Araullo Senior High School",
-    date: "2024 — 2026",
+    date: "2024 - 2026",
     description:
       "Built a stronger foundation in academics, communication, leadership, and problem-solving.",
   },
@@ -71,31 +49,31 @@ const awards = [
     place: "Grade 12 Academic Achievement",
     date: "2026",
     description:
-      "A DepEd Criteria-based award or recognition for academic excellence.",
+      "A DepEd criteria-based recognition for academic excellence.",
   },
   {
     title: "With High Honors - GWA: 95",
     place: "Grade 11 Academic Achievement",
     date: "2025",
     description:
-      "A DepEd Criteria-based award or recognition for academic excellence.",
+      "A DepEd criteria-based recognition for academic excellence.",
   },
 ]
 
 const roles = [
   {
-    title: "Public Informmation Officer",
+    title: "Public Information Officer",
     place: "Supreme Secondary Learner Government (SSLG)",
-    date: "2025 — 2026",
+    date: "2025 - 2026",
     description:
-      "Led the school's social media and communications, creating multimedia contents managing online presence.",
+      "Led the school's social media and communications, creating multimedia content and managing online presence.",
   },
   {
     title: "Vice President",
     place: "Araullian Integrity Crusaders (AIC)",
-    date: "2024 — 2025",
+    date: "2024 - 2025",
     description:
-      "Uphold the values of integrity and honesty in the school community, promoting ethical behavior and responsible decision-making.",
+      "Promoted integrity and responsible decision-making in the school community.",
   },
 ]
 
@@ -120,14 +98,49 @@ const listening = [
   "Chill R&B / Indie playlists",
 ]
 
+const aboutJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": absoluteUrl("/about#webpage"),
+    url: absoluteUrl("/about"),
+    name: "About Jansen Cadorna",
+    description: metadata.description,
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    mainEntity: {
+      "@id": absoluteUrl("/#person"),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: absoluteUrl("/about"),
+      },
+    ],
+  },
+]
+
 export default function AboutPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080808] text-white">
       <SiteBackground />
       <SiteNavbar />
+      <JsonLd data={aboutJsonLd} />
 
       <section className={`${container} relative z-10 pt-32 pb-28`}>
-        {/* Intro */}
         <div className="border-b border-white/10 pb-14">
           <p className="text-label text-white/50">More about me</p>
 
@@ -138,7 +151,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-3 text-base text-white/45">
-                Computer Science Student · Multimedia Artist · Aspiring Software
+                Computer Science Student - Multimedia Artist - Aspiring Software
                 Engineer
               </p>
             </div>
@@ -146,43 +159,31 @@ export default function AboutPage() {
             <div className="space-y-5 text-[18px] leading-relaxed text-white/60">
               <p>
                 I started coding when I was 13{" "}
-                <span className="text-xs">( March 2021)</span>, just searching
+                <span className="text-xs">(March 2021)</span>, just searching
                 around how to automate things, then I discovered computer
                 science and programming. So I started learning web development
                 and design. I got hooked on building things that feel polished,
-                useful, and ready to ship. I&apos;m still learning every day,
-                but I build with the mindset of making things that feel real,
-                useful, and polished.
+                useful, and ready to ship. I am still learning every day, but I
+                build with the mindset of making things that feel real, useful,
+                and polished.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Lately */}
         <ProfileBlock
           icon={<Sparkles className="size-4" />}
           label="Lately"
-          title="What I’m currently focused on"
+          title="What I am currently focused on"
         >
           <ul className="space-y-3 text-base leading-relaxed text-white/55">
-            <li>
-              · Improving my portfolio into a more professional product-focused
-              site
-            </li>
-            <li>
-              · Learning stronger software architecture and backend workflows
-            </li>
-            <li>
-              · Building projects that mix design taste with useful
-              functionality
-            </li>
-            <li>
-              · Exploring AI tools, automation, and better development workflows
-            </li>
+            <li>Improving my portfolio into a more professional product-focused site</li>
+            <li>Learning stronger software architecture and backend workflows</li>
+            <li>Building projects that mix design taste with useful functionality</li>
+            <li>Exploring AI tools, automation, and better development workflows</li>
           </ul>
         </ProfileBlock>
 
-        {/* Education */}
         <ProfileBlock
           icon={<GraduationCap className="size-4" />}
           label="Education"
@@ -195,7 +196,6 @@ export default function AboutPage() {
           </div>
         </ProfileBlock>
 
-        {/* Awards */}
         <ProfileBlock
           icon={<Award className="size-4" />}
           label="Academic awards"
@@ -208,7 +208,6 @@ export default function AboutPage() {
           </div>
         </ProfileBlock>
 
-        {/* Roles */}
         <ProfileBlock
           icon={<BriefcaseBusiness className="size-4" />}
           label="School Organizations"
@@ -221,7 +220,6 @@ export default function AboutPage() {
           </div>
         </ProfileBlock>
 
-        {/* Taste / Hobbies */}
         <ProfileBlock
           icon={<UserRound className="size-4" />}
           label="Taste & hobbies"
@@ -230,16 +228,14 @@ export default function AboutPage() {
           <TagList items={tastes} />
         </ProfileBlock>
 
-        {/* Listening */}
         <ProfileBlock
           icon={<Headphones className="size-4" />}
           label="Listening"
-          title="What I’m listening to most"
+          title="What I am listening to most"
         >
           <TagList items={listening} />
         </ProfileBlock>
 
-        {/* Footer CTA */}
         <div className="mt-24 rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-8">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -252,19 +248,19 @@ export default function AboutPage() {
 
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/#projects"
+                href="/projects"
                 className="inline-flex h-10 items-center justify-center rounded-lg bg-white px-5 text-sm font-medium text-black transition hover:bg-white/90"
               >
                 View projects
                 <ArrowUpRight className="ml-2 size-4" />
               </Link>
 
-              <a
-                href="mailto:hello@jansencadorna.com"
+              <Link
+                href="/contact"
                 className="inline-flex h-10 items-center justify-center rounded-lg border border-white/10 bg-transparent px-5 text-sm font-medium text-white transition hover:bg-white hover:text-black"
               >
                 Contact me
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server"
 
-const siteUrl = "https://www.jansencadorna.com"
+import { absoluteUrl, seoConfig, sitePages } from "@/lib/seo"
+
 const indexNowKey = "143e41b6ac3e4af29ef1871f61dafcae"
 
-const urls = [
-  siteUrl,
-  `${siteUrl}/about`,
-  `${siteUrl}/projects`,
-  `${siteUrl}/stack`,
-  `${siteUrl}/certifications`,
-]
+const urls = sitePages.map((page) => absoluteUrl(page.path))
 
 export async function GET() {
   const response = await fetch("https://www.bing.com/indexnow", {
@@ -20,7 +15,7 @@ export async function GET() {
     body: JSON.stringify({
       host: "www.jansencadorna.com",
       key: indexNowKey,
-      keyLocation: `${siteUrl}/${indexNowKey}.txt`,
+      keyLocation: `${seoConfig.siteUrl}/${indexNowKey}.txt`,
       urlList: urls,
     }),
   })

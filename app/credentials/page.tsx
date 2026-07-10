@@ -1,46 +1,21 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import { ArrowUpRight, Pin } from "lucide-react"
 
 import { SiteBackground } from "@/components/layout/site-background"
 import { SiteNavbar } from "@/components/layout/site-navbar"
+import { JsonLd } from "@/components/seo/json-ld"
 import { container } from "@/components/shared/container"
+import { absoluteUrl, createPageMetadata, seoConfig } from "@/lib/seo"
 
-import type { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: "Certifications",
+export const metadata: Metadata = createPageMetadata({
+  title: "Credentials",
   description:
-    "Certifications and credentials earned by Jansen Cadorna across software development, Python, management information systems, UI/UX design, and web technologies.",
-
-  alternates: {
-    canonical: "/certifications",
-  },
-
-  openGraph: {
-    title: "Certifications — Jansen Cadorna",
-    description:
-      "View Jansen Cadorna’s certifications and credentials across software development, Python, UI/UX design, information systems, and web technologies.",
-    url: "/certifications",
-    siteName: "Jansen Cadorna",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Jansen Cadorna certifications page preview",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Certifications — Jansen Cadorna",
-    description:
-      "Software development, Python, UI/UX design, and information systems certifications by Jansen Cadorna.",
-    images: ["/og-image.png"],
-  },
-}
+    "Credentials earned by Jansen Cadorna across software development, Python, management information systems, UI/UX design, databases, and web technologies.",
+  path: "/credentials",
+  image: seoConfig.ogImages.credentials,
+  imageAlt: "Jansen Cadorna credentials page preview",
+})
 
 const certifications = [
   {
@@ -75,7 +50,7 @@ const certifications = [
     issuer: "MongoDB University",
     date: "2025",
     category: "Database",
-    logo: "/img/cert-mongodb.png",
+    logo: "",
     href: "https://www.credly.com/badges/b4efd6ee-a836-4b83-94de-a68922caf4d0",
     pinned: false,
   },
@@ -84,7 +59,7 @@ const certifications = [
     issuer: "IBM Digital Credential",
     date: "2025",
     category: "Developer Tools",
-    logo: "/img/cert-github.png",
+    logo: "",
     href: "https://www.credly.com/badges/a51b500d-2327-4d8c-adaa-a7e26488085a",
     pinned: false,
   },
@@ -93,7 +68,7 @@ const certifications = [
     issuer: "Job Ready Programmer",
     date: "2025",
     category: "Programming",
-    logo: "/img/cert-github.png",
+    logo: "",
     href: "https://www.udemy.com/certificate/UC-378351d2-b41a-42fc-917d-821d1ebcccf0/",
     pinned: false,
   },
@@ -120,58 +95,75 @@ const certifications = [
     issuer: "Vue.js Certification",
     date: "2026",
     category: "Frontend Framework",
-    logo: "/img/cert-vue.png",
-    href: "your-certificate-link",
+    logo: "",
+    href: "#",
     pinned: false,
   },
 ]
 
-function CertificateTextItem({
-  title,
-  issuer,
-  date,
-  category,
-  href,
-}: {
-  title: string
-  issuer: string
-  date: string
-  category: string
-  href: string
-}) {
-  return (
-    <a
-      href={href}
-      target={href === "#" ? undefined : "_blank"}
-      rel={href === "#" ? undefined : "noopener noreferrer"}
-      className="group grid gap-3 py-5 transition hover:bg-white/[0.025] md:grid-cols-[1fr_160px_120px]"
-    >
-      <div>
-        <h3 className="text-base font-semibold tracking-[-0.03em] text-white">
-          {title}
-        </h3>
-
-        <p className="mt-1 text-sm text-white/40 italic">{issuer}</p>
-      </div>
-
-      <p className="text-sm text-white/40 md:text-right">{category}</p>
-
-      <p className="flex items-center gap-2 text-sm text-white/35 md:justify-end">
-        {date}
-        <ArrowUpRight className="size-4 opacity-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
-      </p>
-    </a>
-  )
-}
-
 const pinnedCertifications = certifications.filter((cert) => cert.pinned)
 const listedCertifications = certifications.filter((cert) => !cert.pinned)
 
-export default function CertificationsPage() {
+const credentialsJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": absoluteUrl("/credentials#webpage"),
+    url: absoluteUrl("/credentials"),
+    name: "Credentials - Jansen Cadorna",
+    description: metadata.description,
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    about: {
+      "@id": absoluteUrl("/#person"),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Credentials",
+        item: absoluteUrl("/credentials"),
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Jansen Cadorna credentials",
+    itemListElement: certifications.map((certificate, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "EducationalOccupationalCredential",
+        name: certificate.title,
+        credentialCategory: certificate.category,
+        recognizedBy: {
+          "@type": "Organization",
+          name: certificate.issuer,
+        },
+        url: certificate.href === "#" ? absoluteUrl("/credentials") : certificate.href,
+      },
+    })),
+  },
+]
+
+export default function CredentialsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080808] text-white">
       <SiteBackground />
       <SiteNavbar />
+      <JsonLd data={credentialsJsonLd} />
 
       <section className={`${container} relative z-10 pt-32 pb-28`}>
         <div className="border-b border-white/10 pb-14">
@@ -188,9 +180,9 @@ export default function CertificationsPage() {
 
             <div className="space-y-5 text-[18px] leading-relaxed tracking-[-0.03em] text-white/60">
               <p>
-                A simple archive of certifications I’ve completed while learning
-                software development, systems, programming, design, and product
-                workflows.
+                A simple archive of certifications I have completed while
+                learning software development, systems, programming, design, and
+                product workflows.
               </p>
 
               <p>
@@ -201,7 +193,6 @@ export default function CertificationsPage() {
           </div>
         </div>
 
-        {/* Pinned */}
         <section className="py-14">
           <div className="mb-8 flex items-end justify-between">
             <div>
@@ -224,7 +215,6 @@ export default function CertificationsPage() {
           </div>
         </section>
 
-        {/* Full list */}
         <section className="pt-4 pb-14">
           <div className="mb-8 flex items-end justify-between">
             <div>
@@ -248,6 +238,48 @@ export default function CertificationsPage() {
         </section>
       </section>
     </main>
+  )
+}
+
+function CertificateTextItem({
+  title,
+  issuer,
+  date,
+  category,
+  href,
+}: {
+  title: string
+  issuer: string
+  date: string
+  category: string
+  href: string
+}) {
+  const isLinked = href !== "#"
+
+  return (
+    <a
+      href={isLinked ? href : "/credentials"}
+      target={isLinked ? "_blank" : undefined}
+      rel={isLinked ? "noopener noreferrer" : undefined}
+      className="group grid gap-3 py-5 transition hover:bg-white/[0.025] md:grid-cols-[1fr_160px_120px]"
+    >
+      <div>
+        <h3 className="text-base font-semibold tracking-[-0.03em] text-white">
+          {title}
+        </h3>
+
+        <p className="mt-1 text-sm text-white/40 italic">{issuer}</p>
+      </div>
+
+      <p className="text-sm text-white/40 md:text-right">{category}</p>
+
+      <p className="flex items-center gap-2 text-sm text-white/35 md:justify-end">
+        {date}
+        {isLinked && (
+          <ArrowUpRight className="size-4 opacity-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+        )}
+      </p>
+    </a>
   )
 }
 

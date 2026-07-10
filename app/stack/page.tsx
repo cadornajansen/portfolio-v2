@@ -1,43 +1,19 @@
-import { SiteBackground } from "@/components/layout/site-background"
-import { SiteNavbar } from "@/components/layout/site-navbar"
-import { container } from "@/components/shared/container"
-
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Tech Stack",
+import { SiteBackground } from "@/components/layout/site-background"
+import { SiteNavbar } from "@/components/layout/site-navbar"
+import { JsonLd } from "@/components/seo/json-ld"
+import { container } from "@/components/shared/container"
+import { absoluteUrl, createPageMetadata, seoConfig } from "@/lib/seo"
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Stack",
   description:
     "The tools, frameworks, languages, and platforms Jansen Cadorna uses for frontend development, backend systems, design, deployment, and product building.",
-
-  alternates: {
-    canonical: "/stack",
-  },
-
-  openGraph: {
-    title: "Tech Stack — Jansen Cadorna",
-    description:
-      "A look at Jansen Cadorna’s development stack, including Next.js, React, TypeScript, Tailwind CSS, Supabase, design tools, and deployment workflow.",
-    url: "/stack",
-    siteName: "Jansen Cadorna",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Jansen Cadorna tech stack page preview",
-      },
-    ],
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Tech Stack — Jansen Cadorna",
-    description:
-      "Tools, frameworks, and platforms used by Jansen Cadorna to build polished web products.",
-    images: ["/og-image.png"],
-  },
-}
+  path: "/stack",
+  image: seoConfig.ogImages.stack,
+  imageAlt: "Jansen Cadorna technology stack page preview",
+})
 
 const skillGroups = [
   {
@@ -63,7 +39,7 @@ const skillGroups = [
       "Django",
       "Flask",
       "Streamlit",
-      "Sveltekit",
+      "SvelteKit",
       "Three.js",
     ],
   },
@@ -78,7 +54,7 @@ const skillGroups = [
       "SQL",
       "Authentication",
       "Database Design",
-      "Pocketbase",
+      "PocketBase",
       "Firebase",
       "Redis",
       "Prisma",
@@ -90,7 +66,7 @@ const skillGroups = [
       "Azure Virtual Machines",
       "Google Cloud",
       "Serverless Functions",
-      "Trigger.dev",    
+      "Trigger.dev",
       "Express.js",
     ],
   },
@@ -116,7 +92,7 @@ const skillGroups = [
       "Video Editing",
       "Color Grading",
       "Photo Manipulation",
-      "Adobe Creatives"
+      "Adobe Creative Cloud",
     ],
   },
   {
@@ -131,7 +107,7 @@ const skillGroups = [
       "NPM",
       "PNPM",
       "Deployment",
-      "Burpsuite",
+      "Burp Suite",
       "Claude",
       "Google Workspace",
       "Microsoft 365",
@@ -139,15 +115,15 @@ const skillGroups = [
       "Notion",
       "Netlify",
       "Heroku",
-      "Digital Ocean"
+      "DigitalOcean",
     ],
   },
   {
     title: "Exploring",
     items: [
-      "Pinia by Vue.js",
+      "Pinia",
       "Nuxt",
-      "Python Pytorch",
+      "PyTorch",
       "AI Tools",
       "Prompt Engineering",
       "Web Security Basics",
@@ -161,16 +137,61 @@ const totalSkills = skillGroups.reduce(
   0
 )
 
+const stackJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": absoluteUrl("/stack#webpage"),
+    url: absoluteUrl("/stack"),
+    name: "Stack - Jansen Cadorna",
+    description: metadata.description,
+    isPartOf: {
+      "@id": absoluteUrl("/#website"),
+    },
+    about: {
+      "@id": absoluteUrl("/#person"),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Stack",
+        item: absoluteUrl("/stack"),
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Jansen Cadorna technology stack",
+    itemListElement: skillGroups.map((group, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: group.title,
+      item: group.items,
+    })),
+  },
+]
+
 export default function StackPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#080808] text-white">
       <SiteBackground />
       <SiteNavbar />
+      <JsonLd data={stackJsonLd} />
 
       <section className={`${container} relative z-10 pt-32 pb-28`}>
-        {/* Header */}
         <div className="border-white/10 pb-2">
-
           <div className="mt-8 grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <h1 className="text-[42px] leading-none font-semibold tracking-[-0.06em] text-white md:text-[56px]">
@@ -190,14 +211,13 @@ export default function StackPage() {
               </p>
 
               <p>
-                I’m still learning and expanding this stack, but these are the
-                tools I’m most comfortable using or actively improving.
+                I am still learning and expanding this stack, but these are the
+                tools I am most comfortable using or actively improving.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Skill groups */}
         <div className="space-y-14 pt-14">
           {skillGroups.map((group) => (
             <SkillGroup
